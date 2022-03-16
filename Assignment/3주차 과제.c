@@ -2,16 +2,17 @@
 
 #include <stdio.h>
 
-void MySum();
+void MySum(int* arr);
 
 int main()
 {
-	MySum();
+	int arr[6];
+
+	MySum(arr);
 }
 
-void MySum()
+void MySum(int* arr)
 {
-	int arr[6];
 	int sum = 0;
 
 	printf("숫자를 입력하세요. : ");
