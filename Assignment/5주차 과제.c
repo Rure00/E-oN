@@ -107,11 +107,11 @@ int** GetCommands(int* clength, int nlength)
 		{
 			printf("\ni를 입력하세요.");
 			scanf("%d", &i);
-			i--;
+			
 
 			printf("j를 입력하세요.");
 			scanf("%d", &j);
-			j--;
+			
 
 			if (i > j)
 			{
@@ -123,6 +123,9 @@ int** GetCommands(int* clength, int nlength)
 			}
 			else
 			{
+				i--;
+				j--;
+
 				arr[index][0] = i;
 				arr[index][1] = j;
 				break;
