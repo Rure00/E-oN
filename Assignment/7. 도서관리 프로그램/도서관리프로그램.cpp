@@ -40,7 +40,7 @@ private:
 		cout << std::left << book->Name << "   ";
 		cout.width(20);
 		cout << std::left << book->Author;
-		cout.width(20); 
+		cout.width(20);
 		cout << std::left << book->PubYear;
 		cout.width(20);
 		cout << std::left << book->PubName;
@@ -133,7 +133,7 @@ void BookList::LoadFile()
 		index++;
 
 		//genre 할당
-		while (index < line.length())
+		while (index < (int)line.length())
 		{
 			genre.push_back(line[index]);
 			index++;
@@ -256,11 +256,11 @@ void BookList::ModifyBook()
 	}
 	else
 	{
-		cout << endl <<endl;
+		cout << endl << endl;
 
 		PrintBookInfo(thisBook);
 
-		cout << endl <<"수정하겠습니다." << endl;
+		cout << endl << "수정하겠습니다." << endl;
 
 		cout << "책의 이름을 입력하세요. : ";
 		cin >> thisBook->Name;
@@ -400,11 +400,14 @@ void BookList::SearchBook()
 			node = node->next;
 		}
 		break;
+	default:
+		cout << "잘 못 입력하셨습니다." << endl;
+		break;
 	}
 	cout << "------------------------------------------------------------------------------------------------------------------" << endl;
 
 	int len = findingBooks.size();
-	if (len == 0)
+	if (len == 0 || findingBooks.empty())
 	{
 		cout << "검색결과가 없습니다." << endl;
 	}
@@ -420,7 +423,7 @@ void LibrarySystem(BookList* library)
 {
 	int optionIndex = 0;
 	system("cls");
-	
+
 	cout << "0. 종료" << endl
 		<< "1. 도서 목록 출력" << endl
 		<< "2. 도서 추가" << endl
@@ -428,7 +431,7 @@ void LibrarySystem(BookList* library)
 		<< "4. 도서 정보 수정" << endl
 		<< "5. 도서 삭제" << endl;
 	cout << "------------------------------------------------------------------------------------------------------------------" << endl;
-	cout << "다음할 일을 입력하세요. : ";
+	cout << "다음 할 일을 입력하세요. : ";
 	cin >> optionIndex;
 
 	cout << endl;
