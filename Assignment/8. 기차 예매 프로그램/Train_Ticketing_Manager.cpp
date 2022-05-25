@@ -20,7 +20,6 @@ public:
 		minute = m;
 	}
 
-	int GetHour() { return hour; }
 	bool SetHour(int h)
 	{
 		if (h > 24 || h < 0)
@@ -32,7 +31,6 @@ public:
 		hour = h;
 		return true;
 	}
-	int GetMinute() { return minute; }
 	bool SetMinute(int m)
 	{
 		if (m > 60 || m < 0)
@@ -47,14 +45,14 @@ public:
 
 	bool operator<(Time comparison)
 	{
-		if (hour > comparison.GetHour())
+		if (hour > comparison.hour)
 			return false;
-		else if (hour < comparison.GetHour())
+		else if (hour < comparison.hour)
 			return true;
 
-		if (minute >= comparison.GetMinute())
+		if (minute >= comparison.minute)
 			return false;
-		else if (minute < comparison.GetMinute())
+		else if (minute < comparison.minute)
 			return true;
 
 		return false;
@@ -62,7 +60,7 @@ public:
 	Time operator-(Time comparsion)
 	{
 		Time result(0, 0);
-		
+
 		int ToMinute1 = hour * 60 + minute;
 		int ToMinute2 = comparsion.hour * 60 + comparsion.minute;
 
@@ -71,8 +69,8 @@ public:
 		int h = gap / 60;
 		int m = gap - h * 60;
 
-		result.SetHour(h);
-		result.SetMinute(m);
+		result.hour = h;
+		result.minute = m;
 
 		return result;
 	}
@@ -101,7 +99,7 @@ public:
 		return str;
 	}
 
-	
+
 };
 
 #pragma endregion
@@ -155,7 +153,7 @@ private:
 		cout << " ";
 		cout << std::left << TrainName;
 		cout << " ";
-		if(SeatNum != 0)
+		if (SeatNum != 0)
 			cout << std::left << SeatNum << endl;
 		else
 			cout << std::left << "Sold Out" << endl;
@@ -223,7 +221,7 @@ private:
 			cout << "해당 기차 예매 내역을 찾을 수 없습니다." << endl;
 			return false;
 		}
-		
+
 	}
 
 	vector<int> LoadTicket()
@@ -236,7 +234,7 @@ private:
 			cout << "파일 찾지 못함" << endl;
 			return TicketIndex;
 		}
-		
+
 		string line;
 		while (getline(ticketinList, line))
 		{
@@ -278,7 +276,7 @@ private:
 
 	Train* GetTrainByIndex(int index)
 	{
-		
+
 
 		Train* node = head;
 		for (int i = 1; i <= index; i++)
@@ -446,12 +444,12 @@ void TrainList::SaveFile()
 void TrainList::QuickTicketing()
 {
 	vector<Train*> wishTrain = QuickSearch();
-	if (wishTrain.empty()) 
+	if (wishTrain.empty())
 		return;
 
 	for (int i = 0; i < (signed)wishTrain.size(); i++)
 	{
-		cout << "No." << i+1 << " ";
+		cout << "No." << i + 1 << " ";
 		wishTrain[i]->PrintTrainInfo();
 	}
 
@@ -481,7 +479,7 @@ void TrainList::QuickTicketing()
 		else
 			break;
 	}
-	
+
 	int trainIndex = GetIndexOfTrain(wishTrain[trainNum]);
 	wishTrain[trainNum]->Reserve(trainIndex);
 }
