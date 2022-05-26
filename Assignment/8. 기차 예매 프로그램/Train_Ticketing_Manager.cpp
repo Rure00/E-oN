@@ -45,7 +45,7 @@ public:
 
 	bool operator<(Time comparison)
 	{
-		if (hour > comparison.hour)
+		if (hour >= comparison.hour)
 			return false;
 		else if (hour < comparison.hour)
 			return true;
@@ -54,8 +54,6 @@ public:
 			return false;
 		else if (minute < comparison.minute)
 			return true;
-
-		return false;
 	}
 	Time operator-(Time comparsion)
 	{
